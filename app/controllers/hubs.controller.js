@@ -111,7 +111,19 @@ exports.delete = (req, res) => {
 };
 
 // Delete all Tutorials from the database.
-exports.deleteAll = (req, res) => {};
+exports.deleteAll = (req, res) => {
+  Hub.deleteMany({})
+    .then((data) => {
+      res.send({
+        message: `${data.deletedCount} Hubs were deleted successfully`,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occured while removing all hubs",
+      });
+    });
+};
 
 // Find all published Tutorials
 exports.findAllPublished = (req, res) => {};

@@ -18,6 +18,9 @@ module.exports = (app) => {
   //   endpoint to delete a hub by id
   router.delete("/:id", hubs.delete);
 
+  //   endpoint to delete all hubs
+  router.delete("/", hubs.deleteAll);
+
   // main route for all endpoints
   app.use("/api/hubs", router);
 };
