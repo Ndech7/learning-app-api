@@ -65,7 +65,29 @@ exports.findOne = (req, res) => {
 };
 
 // Update a Tutorial by the id in the request
-exports.update = (req, res) => {};
+exports.update = (req, res) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Data cannot be empty",
+    });
+  }
+  const id = req.params.id;
+  Hub.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot Update Hub with id ${id}`,
+        });
+      } else {
+        res.send({
+          message: "Hub was updated Succesfully",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({ message: `Error Updating Hub with id ${id}` });
+    });
+};
 
 // Delete a Tutorial with the specified id in the request
 exports.delete = (req, res) => {};
