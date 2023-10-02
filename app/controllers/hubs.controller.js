@@ -8,6 +8,7 @@ exports.create = (req, res) => {
     res.status(400).send({
       message: "Content can not be empty!",
     });
+    return;
   }
   // Create a Hub
   const hub = new Hub({
@@ -29,7 +30,22 @@ exports.create = (req, res) => {
 };
 
 // Retrieve all Tutorials from the database.
-exports.findAll = (req, res) => {};
+exports.findAll = (req, res) => {
+  const title = req.query.title;
+  const condition = title
+    ? { title: { $regex: new RegExp(title), $options: "i" } }
+    : {};
+
+  Hub.find(condition)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Some Error occured while retrieving Hub(s)",
+      });
+    });
+};
 
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {};
