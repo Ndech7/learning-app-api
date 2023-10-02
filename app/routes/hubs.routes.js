@@ -9,6 +9,9 @@ module.exports = (app) => {
   //   endpoint to retrieve Hub(s)
   router.get("/", hubs.findAll);
 
+  //   endpoint to retrieve all completed hubs
+  router.get("/completed", hubs.findAllCompleted);
+
   //   endpoint to retrieve a hub by id
   router.get("/:id", hubs.findOne);
 
