@@ -40,6 +40,9 @@ app.get("/", (req, res) => {
   });
 });
 
+// api endpoint
+require("./app/routes/hubs.routes")(app);
+
 // set port to listen for request
 const PORT = process.env.PORT || 8082;
 app.listen(PORT, () => {
