@@ -15,6 +15,9 @@ module.exports = (app) => {
   //   endpoint to update a hub by id
   router.put("/:id", hubs.update);
 
+  //   endpoint to delete a hub by id
+  router.delete("/:id", hubs.delete);
+
   // main route for all endpoints
   app.use("/api/hubs", router);
 };
