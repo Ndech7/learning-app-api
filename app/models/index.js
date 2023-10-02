@@ -9,4 +9,6 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 
+db.hubs = require("./hubs.models.js")(mongoose);
+
 module.exports = db;
