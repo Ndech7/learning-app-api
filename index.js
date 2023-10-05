@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-  origin: "https://learning-app-ocs8.onrender.com",
+  origin: "https://learning-app-0oid.onrender.com",
 };
 
 // allow CORS
